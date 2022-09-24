@@ -1,3 +1,5 @@
+import java.time.Instant;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -20,7 +22,7 @@ public class Main {
     	 */
 
 
-        //System.out.println(Thread.activeCount());
+        Instant instant = Instant.now();
 
         //Thread.currentThread().setName("MAIN");
         System.out.println("The name of current thread is " + Thread.currentThread().getName());
@@ -37,15 +39,23 @@ public class Main {
 
     	*/
 
-        MyThread thread2 = new MyThread();
-        System.out.println("The name of thread2 is: "+ thread2.getName());
-        thread2.setDaemon(false);
-        System.out.println("thread2 Daemon status: " +thread2.isDaemon());
+        //creating Thread using a subclass of the Thread class
 
-        thread2.start(); //thread will not start unless this method is used
+        MyThread thread1 = new MyThread();
+        System.out.println("The name of thread1 is: "+ thread1.getName());
+        thread1.setDaemon(false);
+        System.out.println("thread1 Daemon status: " +thread1.isDaemon());
+        thread1.start(); //thread will not start unless this method is used
+        System.out.println("thread1 alive status: " +thread1.isAlive());
+        System.out.println("The number of active thread at: " +instant +" is :" +Thread.activeCount());
 
-        System.out.println("thread2 alive status: " +thread2.isAlive());
+        //creating thread using a class that implements the Runnable interface
 
-        System.out.println("The number of active thread is: " +Thread.activeCount());
+        MyRunnable runnable1 = new MyRunnable();
+        Thread thread2 = new Thread(runnable1);
+        thread2.start(); //start thread2
+        System.out.println("The number of active thread at: " +instant +" is :" +Thread.activeCount());
+
+
     }
 }
