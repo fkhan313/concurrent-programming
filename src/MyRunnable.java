@@ -1,5 +1,5 @@
-public class MyRunnable implements Runnable {
 
+public class MyRunnable implements Runnable {
 
     @Override
     public void run() {
@@ -13,5 +13,7 @@ public class MyRunnable implements Runnable {
             }
         }
         System.out.println("Thread #2 is finished");
+
+
     }
 }

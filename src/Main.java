@@ -1,7 +1,7 @@
 import java.time.Instant;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         /*
     	thread =	A thread of execution in a program (kind of like a virtual CPU)
@@ -47,14 +47,17 @@ public class Main {
         System.out.println("thread1 Daemon status: " +thread1.isDaemon());
         thread1.start(); //thread will not start unless this method is used
         System.out.println("thread1 alive status: " +thread1.isAlive());
+        thread1.join(); // calling thread (main) will until this thread is finished
+        System.out.println("thread1 alive status: " +thread1.isAlive());
         System.out.println("The number of active thread at: " +instant +" is :" +Thread.activeCount());
 
         //creating thread using a class that implements the Runnable interface
-
         MyRunnable runnable1 = new MyRunnable();
         Thread thread2 = new Thread(runnable1);
         thread2.start(); //start thread2
+        System.out.println("thread2 alive status: " +thread2.isAlive());
         System.out.println("The number of active thread at: " +instant +" is :" +Thread.activeCount());
+
 
 
     }
